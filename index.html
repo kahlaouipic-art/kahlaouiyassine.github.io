@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio de Design</title>
+    <style>
+        /* Styles de base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #c5c6c7;
+            line-height: 1.6;
+        }
+
+        /* En-tête / Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: #1f2833;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #66fcf1;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #66fcf1;
+        }
+
+        /* Section Accueil */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #66fcf1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            color: #a9a9a9;
+        }
+
+        /* Grille des Projets (Portfolio) */
+        .portfolio-section {
+            padding: 60px 8%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: #66fcf1;
+            margin: 10px auto 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: #1f2833;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(102, 252, 241, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background-color: #2b3a4a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #66fcf1;
+            font-weight: bold;
+            font-size: 1.2rem;
+            /* Quand vous aurez vos images, l'IA pourra remplacer cette box par une vraie image */
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: #c5c6c7;
+        }
+
+        /* Section Contact / Pied de page */
+        footer {
+            background-color: #1f2833;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        footer h2 {
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+
+        .contact-email {
+            color: #66fcf1;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #a9a9a9;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de navigation -->
+    <header>
+        <div class="logo">DESIGN.IO</div>
+        <nav>
+            <a href="#projets">Projets</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Accueil -->
+    <section class="hero">
+        <h1>Créatif & <span>Designer Visuel</span></h1>
+        <p>Bienvenue sur mon espace. Découvrez mes derniers travaux, concepts graphiques et réalisations artistiques.</p>
+    </section>
+
+    <!-- Grille Portfolio -->
+    <section class="portfolio-section" id="projets">
+        <h2 class="section-title">Mes Réalisations</h2>
+        <div class="grid">
+            
+            <!-- Projet 1 -->
+            <div class="project-card">
+                <div class="project-image">Projet Design 1</div>
+                <div class="project-info">
+                    <h3>Identité Visuelle</h3>
+                    <p>Création d'un logo moderne et d'une charte graphique épurée pour une marque de technologie.</p>
+                </div>
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="project-card">
+                <div class="project-image">Projet Design 2</div>
+                <div class="project-info">
+                    <h3>Design d'Interface</h3>
+                    <p>Maquette UI/UX pour une application mobile dédiée aux artistes et créateurs.</p>
+                </div>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="project-card">
+                <div class="project-image">Projet Design 3</div>
+                <div class="project-info">
+                    <h3>Affiche & Print</h3>
+                    <p>Conception d'une série d'affiches minimalistes pour un festival d'art contemporain.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact & Pied de page -->
+    <footer id="contact">
+        <h2>Travaillons ensemble !</h2>
+        <p>Une idée de projet ? Contactez-moi par email :</p>
+        <a href="mailto:votre.email@example.com" class="contact-email">votre.email@example.com</a>
+        <div class="copyright">
+            &copy; 2026 Kahlaoui Yassine. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
