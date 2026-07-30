@@ -3,144 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administration — Connexion</title>
+    <title>Mon Portfolio de Design</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+        /* STYLE DU SITE WEB */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: #0a0a0c; color: #f3f4f6; padding: 0 20px; position: relative; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid #1f2937; }
+        .logo { font-weight: 700; font-size: 1.2rem; color: #ffffff; }
+        nav a { color: #9ca3af; text-decoration: none; margin-left: 24px; font-size: 0.95rem; }
+        .hero { padding: 100px 0; max-width: 700px; }
+        .hero h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.1; color: #ffffff; margin-bottom: 24px; }
+        .hero h1 span { color: #6366f1; }
+        .hero p { font-size: 1.2rem; color: #9ca3af; }
+        .portfolio-section { padding: 60px 0 100px 0; }
+        .section-title { font-size: 1.5rem; color: #ffffff; margin-bottom: 40px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .project-card { text-decoration: none; color: inherit; display: block; }
+        .project-image { width: 100%; height: 280px; border-radius: 12px; display: flex; justify-content: center; align-items: center; font-weight: 600; color: #ffffff; margin-bottom: 16px; background: linear-gradient(135deg, #4f46e5 0%, #070b19 100%); }
+        .project-info h3 { font-size: 1.1rem; color: #ffffff; margin-bottom: 4px; }
+        .project-info p { font-size: 0.9rem; color: #9ca3af; }
+        footer { padding: 80px 0 40px 0; border-top: 1px solid #1f2937; text-align: center; }
+        .email-link { font-size: 1.3rem; color: #6366f1; text-decoration: none; font-weight: 600; }
+        .admin-indicator { position: fixed; bottom: 20px; left: 20px; background: #6366f1; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: none; font-weight: bold; z-index: 999; }
 
-        body {
-            background-color: #0a0a0c;
-            color: #f3f4f6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+        /* BOUTON D'ÉDITION POUR L'ADMINISTRATEUR */
+        .edit-btn { display: none; background: #6366f1; color: white; border: none; padding: 4px 8px; font-size: 0.75rem; border-radius: 4px; margin-left: 10px; cursor: pointer; vertical-align: middle; }
+        body.admin-mode .edit-btn { display: inline-block; }
 
-        .login-card {
-            background-color: #111216;
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid #1f2937;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .login-card h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #ffffff;
-            text-align: center;
-        }
-
-        .login-card p {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: #9ca3af;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px 16px;
-            background-color: #1f2937;
-            border: 1px solid #374151;
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-group input:focus {
-            border-color: #6366f1;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            background-color: #6366f1;
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 10px;
-        }
-
-        .login-btn:hover {
-            background-color: #4f46e5;
-        }
-
-        .error-message {
-            color: #ef4444;
-            font-size: 0.85rem;
-            margin-top: 12px;
-            text-align: center;
-            display: none;
-        }
+        /* STYLE DE L'ÉCRAN DE CONNEXION CACHÉ */
+        .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.95); display: none; justify-content: center; align-items: center; z-index: 1000; }
+        .login-card { background-color: #111216; padding: 40px; border-radius: 16px; border: 1px solid #1f2937; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
+        .login-card h1 { font-size: 1.8rem; margin-bottom: 8px; color: #ffffff; text-align: center; }
+        .login-card p { color: #9ca3af; font-size: 0.9rem; margin-bottom: 32px; text-align: center; }
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 0.85rem; color: #9ca3af; margin-bottom: 8px; }
+        .input-group input { width: 100%; padding: 12px 16px; background-color: #1f2937; border: 1px solid #374151; border-radius: 8px; color: #ffffff; outline: none; }
+        .login-btn { width: 100%; padding: 14px; background-color: #6366f1; color: #ffffff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+        .error-message { color: #ef4444; font-size: 0.85rem; margin-top: 12px; text-align: center; display: none; }
     </style>
 </head>
-<body>
+<body id="site-body">
 
-    <div class="login-card">
-        <h1>Console Admin</h1>
-        <p>Connectez-vous pour modifier votre site</p>
-        
-        <div class="input-group">
-            <label for="username">Identifiant</label>
-            <input type="text" id="username" placeholder="admin">
+    <!-- Indicateur Mode Admin en bas à gauche -->
+    <div id="adminBadge" class="admin-indicator">Mode Administrateur Actif</div>
+
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <div class="logo">PORTFOLIO.IO</div>
+            <nav><a href="#projets">Projets</a><a href="#contact">Contact</a></nav>
+        </header>
+
+        <!-- Accueil -->
+        <section class="hero">
+            <h1>
+                <span id="txt-hero-title">Créateur d'identités</span> 
+                <button class="edit-btn" onclick="editText('txt-hero-title')">Modifier</button>
+            </h1>
+            <p>
+                <span id="txt-hero-desc">Bienvenue sur mon espace créatif. Je conçois des interfaces épurées et des logos mémorables.</span>
+                <button class="edit-btn" onclick="editText('txt-hero-desc')">Modifier</button>
+            </p>
+        </section>
+
+        <!-- Galerie Portfolio -->
+        <section class="portfolio-section" id="projets">
+            <h2 class="section-title">Sélection de travaux</h2>
+            <div class="grid">
+                <!-- Projet 1 -->
+                <div class="project-card">
+                    <div class="project-image">Design Concept</div>
+                    <div class="project-info">
+                        <h3>
+                            <span id="txt-proj1-title">Brand Design — NextGen</span>
+                            <button class="edit-btn" onclick="editText('txt-proj1-title')">Modifier</button>
+                        </h3>
+                        <p>
+                            <span id="txt-proj1-desc">Direction artistique</span>
+                            <button class="edit-btn" onclick="editText('txt-proj1-desc')">Modifier</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <footer id="contact">
+            <h2>Discutons de votre projet</h2>
+            <p><a href="mailto:votre.email@example.com" class="email-link" id="txt-email">votre.email@example.com</a> <button class="edit-btn" onclick="editText('txt-email')">Modifier</button></p>
+            <div class="copyright">&copy; 2026 Kahlaoui Yassine.</div>
+        </footer>
+    </div>
+
+    <!-- ÉCRAN DE CONNEXION CACHÉ -->
+    <div class="login-overlay" id="loginScreen">
+        <div class="login-card">
+            <h1>Console Admin</h1>
+            <p>Entrez vos identifiants secrets</p>
+            <div class="input-group">
+                <label>Identifiant</label>
+                <input type="text" id="username" placeholder="admin">
+            </div>
+            <div class="input-group">
+                <label>Mot de passe</label>
+                <input type="password" id="password" placeholder="••••••••">
+            </div>
+            <button class="login-btn" onclick="checkLogin()">Se connecter</button>
+            <div class="error-message" id="error">Identifiants incorrects.</div>
         </div>
-
-        <div class="input-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" placeholder="••••••••">
-        </div>
-
-        <button class="login-btn" onclick="checkLogin()">Se connecter</button>
-        
-        <div class="error-message" id="error">Identifiants incorrects. Réessayez.</div>
     </div>
 
     <script>
+        // 1. CHARGEMENT DES TEXTES ENREGISTRÉS
+        const textElements = ['txt-hero-title', 'txt-hero-desc', 'txt-proj1-title', 'txt-proj1-desc', 'txt-email'];
+        textElements.forEach(id => {
+            const savedText = localStorage.getItem(id);
+            if (savedText) {
+                document.getElementById(id).innerText = savedText;
+                if(id === 'txt-email') document.getElementById(id).href = "mailto:" + savedText;
+            }
+        });
+
+        // 2. OUVERTURE DE L'ÉCRAN DE CONNEXION AVEC LA TOUCHE "ECHAP"
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const screen = document.getElementById('loginScreen');
+                screen.style.display = screen.style.display === 'flex' ? 'none' : 'flex';
+            }
+        });
+
+        // 3. VÉRIFICATION DE LA CONNEXION
         function checkLogin() {
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
             const error = document.getElementById('error');
 
-            // Identifiants de test (Vous pourrez les changer)
             if (user === "admin" && pass === "1234") {
-                alert("Connexion réussie ! Chargement du tableau de bord...");
-                // Prochaine étape : nous allons coder la redirection ici
+                document.getElementById('loginScreen').style.style.display = 'none';
+                document.getElementById('site-body').classList.add('admin-mode');
+                document.getElementById('adminBadge').style.display = 'block';
+                alert("Mode Édition activé ! Vous pouvez cliquer sur les boutons 'Modifier'.");
             } else {
                 error.style.display = "block";
             }
         }
-    </script>
 
+        // 4. ACTION DE MODIFICATION DU TEXTE
+        function editText(id) {
+            const currentText = document.getElementById(id).innerText;
+            const newText = prompt("Entrez le nouveau texte :", currentText);
+            if (newText !== null && newText.trim() !== "") {
+                document.getElementById(id).innerText = newText;
+                localStorage.setItem(id, newText); // Sauvegarde locale instantanée
+                if(id === 'txt-email') document.getElementById(id).href = "mailto:" + newText;
+            }
+        }
+    </script>
 </body>
 </html>
-
