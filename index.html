@@ -1,239 +1,260 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio de Design</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>Designer Portfolio</title>
+    <meta name="description" content="Mon Portfolio de Design Graphique et Visuel" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Liens Google Fonts d'origine préservés -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Styles de base */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+      /* Styles généraux basés sur la police Inter */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', sans-serif;
+      }
 
-        body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-            line-height: 1.6;
-        }
+      body {
+        background-color: #0a0a0c;
+        color: #f3f4f6;
+        line-height: 1.6;
+        padding: 0 20px;
+      }
 
-        /* En-tête / Navigation */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background-color: #1f2833;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+      /* Conteneur principal */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
 
-        .logo {
-            color: #66fcf1;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+      /* Navigation */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 0;
+        border-bottom: 1px solid #1f2937;
+      }
 
-        nav a {
-            color: #ffffff;
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s;
-        }
+      .logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: -0.5px;
+        color: #ffffff;
+      }
 
-        nav a:hover {
-            color: #66fcf1;
-        }
+      nav a {
+        color: #9ca3af;
+        text-decoration: none;
+        margin-left: 24px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.2s ease;
+      }
 
-        /* Section Accueil */
-        .hero {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
-            background: linear-gradient(135deg, #1f2833 0%, #0b0c10 100%);
-        }
+      nav a:hover {
+        color: #ffffff;
+      }
 
-        .hero h1 {
-            font-size: 3rem;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
+      /* Section Accueil (Hero) */
+      .hero {
+        padding: 100px 0;
+        max-width: 700px;
+      }
 
-        .hero h1 span {
-            color: #66fcf1;
-        }
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        color: #ffffff;
+        margin-bottom: 24px;
+      }
 
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            color: #a9a9a9;
-        }
+      .hero h1 span {
+        color: #6366f1; /* Teinte violette moderne */
+      }
 
-        /* Grille des Projets (Portfolio) */
-        .portfolio-section {
-            padding: 60px 8%;
-        }
+      .hero p {
+        font-size: 1.2rem;
+        color: #9ca3af;
+        font-weight: 400;
+      }
 
-        .section-title {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 40px;
-            text-align: center;
-            position: relative;
-        }
+      /* Grille des réalisations */
+      .portfolio-section {
+        padding: 60px 0 100px 0;
+      }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background-color: #66fcf1;
-            margin: 10px auto 0 auto;
-        }
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 40px;
+        letter-spacing: -0.5px;
+      }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 40px;
+      }
 
-        .project-card {
-            background-color: #1f2833;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
+      .project-card {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+        transition: transform 0.2s ease;
+      }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(102, 252, 241, 0.2);
-        }
+      .project-card:hover {
+        transform: translateY(-4px);
+      }
 
-        .project-image {
-            width: 100%;
-            height: 250px;
-            background-color: #2b3a4a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #66fcf1;
-            font-weight: bold;
-            font-size: 1.2rem;
-            /* Quand vous aurez vos images, l'IA pourra remplacer cette box par une vraie image */
-        }
+      /* Les boites d'images de remplacement colorées */
+      .project-image {
+        width: 100%;
+        height: 280px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: #ffffff;
+        margin-bottom: 16px;
+      }
 
-        .project-info {
-            padding: 20px;
-        }
+      /* Dégradés différents pour vos 3 projets */
+      .img-1 { background: linear-gradient(135deg, #4f46e5 0%, #070b19 100%); }
+      .img-2 { background: linear-gradient(135deg, #06b6d4 0%, #071719 100%); }
+      .img-3 { background: linear-gradient(135deg, #ec4899 0%, #1a0610 100%); }
 
-        .project-info h3 {
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
+      .project-info h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 4px;
+      }
 
-        .project-info p {
-            font-size: 0.9rem;
-            color: #c5c6c7;
-        }
+      .project-info p {
+        font-size: 0.9rem;
+        color: #9ca3af;
+      }
 
-        /* Section Contact / Pied de page */
-        footer {
-            background-color: #1f2833;
-            padding: 40px 20px;
-            text-align: center;
-            margin-top: 60px;
-        }
+      /* Pied de page et Contact */
+      footer {
+        padding: 80px 0 40px 0;
+        border-top: 1px solid #1f2937;
+        text-align: center;
+      }
 
-        footer h2 {
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
+      footer h2 {
+        font-size: 1.8rem;
+        color: #ffffff;
+        margin-bottom: 12px;
+        letter-spacing: -0.5px;
+      }
 
-        .contact-email {
-            color: #66fcf1;
-            font-size: 1.2rem;
-            text-decoration: none;
-            font-weight: bold;
-        }
+      footer p {
+        color: #9ca3af;
+        margin-bottom: 24px;
+      }
 
-        .copyright {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: #a9a9a9;
-        }
+      .email-link {
+        font-size: 1.3rem;
+        color: #6366f1;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      .email-link:hover {
+        text-decoration: underline;
+      }
+
+      .copyright {
+        margin-top: 60px;
+        font-size: 0.8rem;
+        color: #4b5563;
+      }
+
+      /* Adaptation Mobile */
+      @media (max-width: 600px) {
+        .hero h1 { font-size: 2.5rem; }
+        .grid { grid-template-columns: 1fr; }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
 
-    <!-- Barre de navigation -->
-    <header>
-        <div class="logo">DESIGN.IO</div>
+    <div class="container">
+      <!-- Navigation -->
+      <header>
+        <div class="logo">DESIGNER.PORTFOLIO</div>
         <nav>
-            <a href="#projets">Projets</a>
-            <a href="#contact">Contact</a>
+          <a href="#projets">Projets</a>
+          <a href="#contact">Contact</a>
         </nav>
-    </header>
+      </header>
 
-    <!-- Accueil -->
-    <section class="hero">
-        <h1>Créatif & <span>Designer Visuel</span></h1>
-        <p>Bienvenue sur mon espace. Découvrez mes derniers travaux, concepts graphiques et réalisations artistiques.</p>
-    </section>
+      <!-- Accueil -->
+      <section class="hero">
+        <h1>Créateur d'identités et de <span>designs uniques</span>.</h1>
+        <p>Bienvenue sur mon espace créatif. Je conçois des interfaces épurées, des logos mémorables et des chartes graphiques sur mesure.</p>
+      </section>
 
-    <!-- Grille Portfolio -->
-    <section class="portfolio-section" id="projets">
-        <h2 class="section-title">Mes Réalisations</h2>
+      <!-- Galerie Portfolio -->
+      <section class="portfolio-section" id="projets">
+        <h2 class="section-title">Sélection de travaux</h2>
         <div class="grid">
-            
-            <!-- Projet 1 -->
-            <div class="project-card">
-                <div class="project-image">Projet Design 1</div>
-                <div class="project-info">
-                    <h3>Identité Visuelle</h3>
-                    <p>Création d'un logo moderne et d'une charte graphique épurée pour une marque de technologie.</p>
-                </div>
+          
+          <!-- Projet 1 -->
+          <a href="#" class="project-card">
+            <div class="project-image img-1">Identité Visuelle</div>
+            <div class="project-info">
+              <h3>Brand Design — NextGen</h3>
+              <p>Direction artistique et logotype</p>
             </div>
+          </a>
 
-            <!-- Projet 2 -->
-            <div class="project-card">
-                <div class="project-image">Projet Design 2</div>
-                <div class="project-info">
-                    <h3>Design d'Interface</h3>
-                    <p>Maquette UI/UX pour une application mobile dédiée aux artistes et créateurs.</p>
-                </div>
+          <!-- Projet 2 -->
+          <a href="#" class="project-card">
+            <div class="project-image img-2">Interface Mobile</div>
+            <div class="project-info">
+              <h3>UI/UX Design — Studio App</h3>
+              <p>Application iOS & Android</p>
             </div>
+          </a>
 
-            <!-- Projet 3 -->
-            <div class="project-card">
-                <div class="project-image">Projet Design 3</div>
-                <div class="project-info">
-                    <h3>Affiche & Print</h3>
-                    <p>Conception d'une série d'affiches minimalistes pour un festival d'art contemporain.</p>
-                </div>
+          <!-- Projet 3 -->
+          <a href="#" class="project-card">
+            <div class="project-image img-3">Affiche / Print</div>
+            <div class="project-info">
+              <h3>Artwork — Festival Minimum</h3>
+              <p>Conception d'affiches vectorielles</p>
             </div>
+          </a>
 
         </div>
-    </section>
+      </section>
 
-    <!-- Contact & Pied de page -->
-    <footer id="contact">
-        <h2>Travaillons ensemble !</h2>
-        <p>Une idée de projet ? Contactez-moi par email :</p>
-        <a href="mailto:votre.email@example.com" class="contact-email">votre.email@example.com</a>
+      <!-- Contact -->
+      <footer id="contact">
+        <h2>Discutons de votre projet</h2>
+        <p>Disponible pour de nouvelles missions en freelance ou collaborations.</p>
+        <a href="mailto:votre.email@example.com" class="email-link">votre.email@example.com</a>
         <div class="copyright">
-            &copy; 2026 Kahlaoui Yassine. Tous droits réservés.
+          &copy; 2026 Kahlaoui Yassine. Code nettoyé avec succès.
         </div>
-    </footer>
+      </footer>
+    </div>
 
-</body>
+  </body>
 </html>
