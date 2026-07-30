@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* STYLE DU SITE WEB */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background-color: #0a0a0c; color: #f3f4f6; padding: 0 20px; position: relative; }
         .container { max-width: 1100px; margin: 0 auto; }
@@ -29,12 +28,8 @@
         footer { padding: 80px 0 40px 0; border-top: 1px solid #1f2937; text-align: center; }
         .email-link { font-size: 1.3rem; color: #6366f1; text-decoration: none; font-weight: 600; }
         .admin-indicator { position: fixed; bottom: 20px; left: 20px; background: #6366f1; color: white; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: none; font-weight: bold; z-index: 999; }
-
-        /* BOUTON D'ÉDITION POUR L'ADMINISTRATEUR */
         .edit-btn { display: none; background: #6366f1; color: white; border: none; padding: 4px 8px; font-size: 0.75rem; border-radius: 4px; margin-left: 10px; cursor: pointer; vertical-align: middle; }
         body.admin-mode .edit-btn { display: inline-block; }
-
-        /* STYLE DE L'ÉCRAN DE CONNEXION CACHÉ */
         .login-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.95); display: none; justify-content: center; align-items: center; z-index: 1000; }
         .login-card { background-color: #111216; padding: 40px; border-radius: 16px; border: 1px solid #1f2937; width: 100%; max-width: 400px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); }
         .login-card h1 { font-size: 1.8rem; margin-bottom: 8px; color: #ffffff; text-align: center; }
@@ -48,17 +43,14 @@
 </head>
 <body id="site-body">
 
-    <!-- Indicateur Mode Admin en bas à gauche -->
     <div id="adminBadge" class="admin-indicator">Mode Administrateur Actif</div>
 
     <div class="container">
-        <!-- Navigation -->
         <header>
             <div class="logo">PORTFOLIO.IO</div>
             <nav><a href="#projets">Projets</a><a href="#contact">Contact</a></nav>
         </header>
 
-        <!-- Accueil -->
         <section class="hero">
             <h1>
                 <span id="txt-hero-title">Créateur d'identités</span> 
@@ -70,11 +62,9 @@
             </p>
         </section>
 
-        <!-- Galerie Portfolio -->
         <section class="portfolio-section" id="projets">
             <h2 class="section-title">Sélection de travaux</h2>
             <div class="grid">
-                <!-- Projet 1 -->
                 <div class="project-card">
                     <div class="project-image">Design Concept</div>
                     <div class="project-info">
@@ -91,7 +81,6 @@
             </div>
         </section>
 
-        <!-- Contact -->
         <footer id="contact">
             <h2>Discutons de votre projet</h2>
             <p><a href="mailto:votre.email@example.com" class="email-link" id="txt-email">votre.email@example.com</a> <button class="edit-btn" onclick="editText('txt-email')">Modifier</button></p>
@@ -99,7 +88,6 @@
         </footer>
     </div>
 
-    <!-- ÉCRAN DE CONNEXION CACHÉ -->
     <div class="login-overlay" id="loginScreen">
         <div class="login-card">
             <h1>Console Admin</h1>
@@ -118,7 +106,6 @@
     </div>
 
     <script>
-        // 1. CHARGEMENT DES TEXTES ENREGISTRÉS
         const textElements = ['txt-hero-title', 'txt-hero-desc', 'txt-proj1-title', 'txt-proj1-desc', 'txt-email'];
         textElements.forEach(id => {
             const savedText = localStorage.getItem(id);
@@ -128,7 +115,6 @@
             }
         });
 
-        // 2. OUVERTURE DE L'ÉCRAN DE CONNEXION AVEC LA TOUCHE "ECHAP"
         window.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 const screen = document.getElementById('loginScreen');
@@ -136,14 +122,13 @@
             }
         });
 
-        // 3. VÉRIFICATION DE LA CONNEXION
         function checkLogin() {
             const user = document.getElementById('username').value;
             const pass = document.getElementById('password').value;
             const error = document.getElementById('error');
 
             if (user === "admin" && pass === "1234") {
-                document.getElementById('loginScreen').style.style.display = 'none';
+                document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('site-body').classList.add('admin-mode');
                 document.getElementById('adminBadge').style.display = 'block';
                 alert("Mode Édition activé ! Vous pouvez cliquer sur les boutons 'Modifier'.");
@@ -152,13 +137,12 @@
             }
         }
 
-        // 4. ACTION DE MODIFICATION DU TEXTE
         function editText(id) {
             const currentText = document.getElementById(id).innerText;
             const newText = prompt("Entrez le nouveau texte :", currentText);
             if (newText !== null && newText.trim() !== "") {
                 document.getElementById(id).innerText = newText;
-                localStorage.setItem(id, newText); // Sauvegarde locale instantanée
+                localStorage.setItem(id, newText);
                 if(id === 'txt-email') document.getElementById(id).href = "mailto:" + newText;
             }
         }
